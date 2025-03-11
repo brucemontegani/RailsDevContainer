@@ -1,0 +1,26 @@
+{
+    "name": "Rails 8 DevContainer",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/workspace",
+    "runServices": [
+        "${localEnv:DATABASE}",
+        "none"
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "Shopify.ruby-extensions-pack",
+                // "rebornix.ruby",
+                //   "castwide.solargraph",
+                //   "ms-azuretools.vscode-docker"
+            ]
+        }
+    },
+    "remoteEnv": {
+        "USERNAME": "${localEnv:USERNAME}",
+        "RUBY_VERSION": "${localEnv:RUBY_VERSION}",
+        "RAILS_VERSION": "${localEnv:RAILS_VERSION}",
+        "DATABASE": "${localEnv:DATABASE}"
+    }
+}

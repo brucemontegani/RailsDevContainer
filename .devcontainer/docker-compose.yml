@@ -1,0 +1,52 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        USERNAME: ${USERNAME:-vscode}
+        RUBY_VERSION: ${RUBY_VERSION:-latest}
+        RAILS_VERSION: ${RAILS_VERSION}
+        DATABASE: ${DATABASE:-sqlite}
+    volumes:
+      - ..:/workspace:cached
+    command: sleep infinity
+    environment:
+      - RAILS_ENV=development
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_started
+      mysql:
+        condition: service_started
+
+   postgres:
+    image: postgres:14
+    profiles:
+      - postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - ${localWorkspaceFolderBasename}-postgres-data:/var/lib/postgresql/data
+
+  mysql:
+    image: mysql:8
+    profiles:
+      - mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: rails_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - ${localWorkspaceFolderBasename}-mysql-data:/var/lib/mysql
+
+volumes:
+  ${localWorkspaceFolderBasename}-postgres-data:
+  ${localWorkspaceFolderBasename}-mysql-data:
