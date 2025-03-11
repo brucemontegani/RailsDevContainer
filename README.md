@@ -1,7 +1,7 @@
 # Ruby on Rails Dev Container Template
 
 ## Overview
-This repository serves as a **template** for setting up a fully functional **Ruby on Rails 8 development environment** using **DevContainers** and **Docker Compose**. It includes all required dependencies and allows you to develop Ruby on Rails applications using **SQLite, PostgreSQL, or MySQL** within a containerized environment.
+This repository serves as a **template** for setting up a fully functional **Ruby on Rails development environment** using **DevContainers** and **Docker Compose**. It includes all required dependencies and allows you to develop Ruby on Rails applications using **SQLite, PostgreSQL, or MySQL** within a containerized environment.
 
 ## Features
 - 🐳 **Docker-based** development setup for full isolation.
